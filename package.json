@@ -40,13 +40,28 @@
         "command": "gumball.runTool",
         "title": "Run Tool",
         "icon": "$(play)"
+      },
+      {
+        "command": "gumball.focusSearch",
+        "title": "Search Tools",
+        "icon": "$(search)"
       }
-    ]
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "gumball.focusSearch",
+          "when": "view == gumballToolsView",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "activationEvents": [
     "onStartupFinished",
     "onView:gumballToolsView",
-    "onCommand:gumball.runTool"
+    "onCommand:gumball.runTool",
+    "onCommand:gumball.focusSearch"
   ],
   "scripts": {
     "vscode:prepublish": "node ./esbuild.config.js",

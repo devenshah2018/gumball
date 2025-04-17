@@ -29,6 +29,26 @@ export class ToolsTreeProvider implements vscode.TreeDataProvider<ToolItem> {
     private _onDidChangeTreeData: vscode.EventEmitter<ToolItem | undefined | null | void> = new vscode.EventEmitter<ToolItem | undefined | null | void>();
     readonly onDidChangeTreeData: vscode.Event<ToolItem | undefined | null | void> = this._onDidChangeTreeData.event;
     private loadingTools = new Set<string>();
+    private searchQuery: string = '';
+    private searchBox: vscode.InputBox;
+
+    constructor() {
+        this.searchBox = vscode.window.createInputBox();
+        this.searchBox.placeholder = 'Search tools...';
+        this.searchBox.prompt = 'Type to filter tools';
+        
+        this.searchBox.onDidChangeValue(query => {
+            this.searchQuery = query.toLowerCase();
+            this.refresh();
+        });
+
+        this.searchBox.onDidHide(() => {
+            if (this.searchQuery) {
+                this.searchQuery = '';
+                this.refresh();
+            }
+        });
+    }
 
     refresh(): void {
         this._onDidChangeTreeData.fire();
@@ -69,10 +89,40 @@ export class ToolsTreeProvider implements vscode.TreeDataProvider<ToolItem> {
         return treeItem;
     }
 
+    private filterToolsBySearch(tools: Tool[]): Tool[] {
+        if (!this.searchQuery) {
+            return tools;
+        }
+        return tools.filter(tool => 
+            tool.name.toLowerCase().includes(this.searchQuery) || 
+            tool.description.toLowerCase().includes(this.searchQuery)
+        );
+    }
+
     getChildren(element?: ToolItem): Thenable<ToolItem[]> {
         if (!element) {
-            // Root level - show categories
+            // Root level - show categories and handle search
             const categories = registry.getAllCategories();
+            if (this.searchQuery) {
+                // When searching, flatten all tools into a single list
+                const allTools: Tool[] = [];
+                categories.forEach(category => {
+                    allTools.push(...registry.getToolsByCategory(category.id));
+                });
+                
+                const filteredTools = this.filterToolsBySearch(allTools);
+                return Promise.resolve(
+                    filteredTools.map(tool => new ToolItem(
+                        tool.name,
+                        tool.id,
+                        tool.description,
+                        false,
+                        'gumball.runTool',
+                        this.loadingTools.has(tool.id)
+                    ))
+                );
+            }
+            
             return Promise.resolve(
                 categories.map(category => new ToolItem(
                     category.name,
@@ -83,17 +133,29 @@ export class ToolsTreeProvider implements vscode.TreeDataProvider<ToolItem> {
             );
         }
 
-        // Show tools for category
-        const tools = registry.getToolsByCategory(element.id);
-        return Promise.resolve(
-            tools.map(tool => new ToolItem(
-                tool.name,
-                tool.id,
-                tool.description,
-                false,
-                'gumball.runTool',
-                this.loadingTools.has(tool.id)
-            ))
-        );
+        // Show tools for category when not searching
+        if (!this.searchQuery) {
+            const tools = registry.getToolsByCategory(element.id);
+            return Promise.resolve(
+                tools.map(tool => new ToolItem(
+                    tool.name,
+                    tool.id,
+                    tool.description,
+                    false,
+                    'gumball.runTool',
+                    this.loadingTools.has(tool.id)
+                ))
+            );
+        }
+
+        return Promise.resolve([]);
+    }
+
+    showSearch(): void {
+        // If the search box is already visible, just focus it
+        if (this.searchBox.value !== undefined) {
+            this.searchBox.value = '';
+        }
+        this.searchBox.show();
     }
 }

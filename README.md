@@ -1,54 +1,34 @@
-# Gumball 🍬
+# Gumball
+A growing toolkit for devs — simple, powerful, and always within reach.
 
-VS Code utilities in an easily accessible interface. Built with simplicity.
+## ⚙️ Tools
+### 🟦 TypeScript
+- Add Return Types – Auto-infer return types with smart defaults
 
-## Features
+### 🟪 Git
+- Mush and Scrap – Merge & delete branches fast
+- Rollback Commits – Undo commits with a few clicks
 
-### TypeScript Tools
-- **Add Return Types** - Auto-add return types to TypeScript functions
-  - Strict type inference
-  - Promise types for async functions
-  - Defaults to 'unknown' for safety
+💡 More tools coming soon — this is just the beginning.
 
+## 📦 Install
+- Open VS Code
+- Go to Extensions (Ctrl+Shift+X)
+- Search Gumball
+- Click Install
 
-### Git Tools
-- **Mush and Scrap** - Quick branch cleanup
-  - Merge and delete branches in one step
-  - Interactive branch selection
+## ✅ Requirements
+- VS Code v1.74.0+
 
-- **Rollback Commits** - Undo recent commits
-  - Roll back multiple commits
-  - Interactive commit selection
-  - Safety checks included
+## 🚀 Usage
+- Click the icon in the Activity Bar
+- Select a tool
+- Hit ▶️ to run
 
-## Install
+## 🔒 Security
+- Local-only operations
+- No external API calls
+- Safe webview handling
+- Made with the VS Code Extension API
 
-1. Open VS Code Extensions (Ctrl+Shift+X)
-2. Search "Gumball"
-3. Click Install
-
-## Requirements
-
-- VS Code 1.74.0+
-- Git
-- TypeScript
-
-## Use
-
-1. Open Gumball in Activity Bar
-2. Pick a tool
-3. Click play
-
-## Security
-
-- Local git operations only
-- Local type inference
-- Secure webview handling
-
-## Coming Soon
-
-Open source release coming soon!
-
----
-
-**Built with VS Code's Extension API**
+Let me know what tools you want next!

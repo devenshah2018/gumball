@@ -1,0 +1,76 @@
+{
+  "name": "gumball",
+  "displayName": "Gumball",
+  "publisher": "gumball",
+  "description": "Growing toolkit for public use. Hope this helps!",
+  "version": "0.0.19",
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/gumball.git"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gumball",
+          "title": "Gumball",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "gumball": [
+        {
+          "id": "gumballToolsView",
+          "name": "Tools",
+          "icon": "media/icon.svg",
+          "type": "tree"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "gumball.runTool",
+        "title": "Run Tool",
+        "icon": "$(play)"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:gumballToolsView",
+    "onCommand:gumball.runTool"
+  ],
+  "scripts": {
+    "vscode:prepublish": "node ./esbuild.config.js",
+    "compile": "node ./esbuild.config.js",
+    "watch": "esbuild --watch --bundle src/extension.ts --outfile=out/extension.js --external:vscode --platform=node --format=cjs",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.99.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.25.2",
+    "esbuild-node-externals": "^1.18.0",
+    "eslint": "^9.23.0",
+    "mocha": "^11.1.0",
+    "undici-types": "^7.8.0"
+  },
+  "dependencies": {
+    "typescript": "^5.8.2"
+  }
+}

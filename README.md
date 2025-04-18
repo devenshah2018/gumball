@@ -4,6 +4,7 @@ A growing toolkit for devs — simple, powerful, and always within reach.
 ## ⚙️ Tools
 ### 🟦 TypeScript
 - Add Return Types – Auto-infer return types with smart defaults
+- Runner - Compiles and runs typescript files.
 
 ### 🟪 Git
 - Mush and Scrap – Merge & delete branches fast

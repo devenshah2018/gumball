@@ -4,6 +4,14 @@ All notable changes to the "gumball" extension will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.3] - 2024-04-17
+
+### Added
+- Next.js Tools
+  - "API Factory" for generating Next.js API templates
+- Typescript Tools
+  - "Runner" for compiling and executing typescript files
+
 ## [0.1.1] - 2024-04-17
 
 ### Added

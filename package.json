@@ -3,7 +3,7 @@
   "displayName": "Gumball",
   "publisher": "gumball",
   "description": "Growing toolkit for public use. Hope this helps!",
-  "version": "0.0.19",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.99.0"
   },
@@ -15,6 +15,7 @@
     "type": "git",
     "url": "https://github.com/yourusername/gumball.git"
   },
+  "icon": "./gumball_logo.png",
   "contributes": {
     "viewsContainers": {
       "activitybar": [

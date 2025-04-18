@@ -7,7 +7,10 @@ A growing toolkit for devs — simple, powerful, and always within reach.
 
 ### 🟪 Git
 - Mush and Scrap – Merge & delete branches fast
-- Rollback Commits – Undo commits with a few clicks
+- Rollback – Undo commits with a few clicks
+
+### 🟪 Next.js
+- API Factory – Create a CRUD template for a resource
 
 💡 More tools coming soon — this is just the beginning.
 

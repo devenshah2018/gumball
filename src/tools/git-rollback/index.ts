@@ -4,7 +4,7 @@ import { checkForUncommittedChanges, rollbackCommits } from './utils';
 
 export class GitRollbackTool implements Tool {
     id = 'gitRollback';
-    name = 'Rollback Commits';
+    name = 'Rollback';
     description = 'Roll back recent commits by moving HEAD to an earlier state';
     category = Categories.GIT;
 

@@ -3,7 +3,7 @@
   "displayName": "Gumball",
   "publisher": "gumball",
   "description": "Growing toolkit for public use. Hope this helps!",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "engines": {
     "vscode": "^1.99.0"
   },

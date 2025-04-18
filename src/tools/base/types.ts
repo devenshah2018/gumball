@@ -31,5 +31,10 @@ export const Categories: { [key: string]: ToolCategory } = {
         id: 'git',
         name: 'Git',
         description: 'Git operations and utilities'
+    },
+    NEXTJS: {
+        id: 'nextjs',
+        name: 'Next.js',
+        description: 'Tools for Next.js development'
     }
 } as const;
